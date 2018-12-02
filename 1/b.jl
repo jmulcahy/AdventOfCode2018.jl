@@ -1,4 +1,4 @@
-s = open("input1a.txt") do file
+s = open("input_a.txt") do file
     read(file, String)
 end
 
