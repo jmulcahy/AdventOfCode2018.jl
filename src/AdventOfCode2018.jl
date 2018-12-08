@@ -9,5 +9,6 @@ function load_input(problem)
 end
 
 include("Day1.jl")
+include("Day2.jl")
 
 end # module
