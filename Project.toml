@@ -1,0 +1,6 @@
+authors = ["John Mulcahy-Stanislawczyk"]
+name = "AdventOfCode2018"
+uuid = "4fbe751e-fb23-11e8-1104-5504eef6f0cd"
+version = "0.1.0"
+
+[deps]
