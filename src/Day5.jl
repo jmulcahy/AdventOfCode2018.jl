@@ -1,7 +1,14 @@
+module Day5
+
+import ..load_input
+
 function load(filename)
     open(filename) do file
         read(file, String)
     end
+end
+function parse_input()
+    input = string(strip(load_input("5a")))
 end
 
 function get_and_remove_match(s::String)
@@ -16,7 +23,7 @@ function get_and_remove_match(s::String)
     s
 end
 
-function process_string(input)
+function process_string(input::String)
     prior = ""
     current = get_and_remove_match(input)
     while prior != current
@@ -26,8 +33,21 @@ function process_string(input)
     current
 end
 
-input = strip(load("input_a.txt"))
+function run_a()
+    input = parse_input()
+    length(process_string(input))
+end
 
-result = process_string(input)
+function process_over_chars(input::String)
+    chars = ['a' + idx for idx in 0:25]
+    regexes = [Regex(char * '|' * uppercase(char)) for char in chars]
+    results = [process_string(replace(input, regex => "")) for regex in regexes]
+    minimum([length(result) for result in results])
+end
 
-println(length(result))
+function run_b()
+    input = parse_input()
+    process_over_chars(input)
+end
+
+end # module
