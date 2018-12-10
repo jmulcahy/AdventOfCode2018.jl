@@ -7,7 +7,6 @@ mutable struct MarbleCircle{T}
     next::MarbleCircle{T}
     previous::MarbleCircle{T}
 
-    # MarbleCircle{T}(value::T) where T = (self = new(); self.value = value; self.next = self; self.previous = self)
     function MarbleCircle{T}(val::T) where T
         self = new()
         self.value = val
