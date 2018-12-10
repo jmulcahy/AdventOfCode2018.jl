@@ -1,11 +1,32 @@
-function load(filename)
-    open(filename) do file
-        read(file, String)
-    end
-end
+module Day8
+
+import ..load_input
 
 function parse_input(input)
     [parse(Int64, x) for x in split(input)]
+end
+
+function sum_node_metadata(stream, start=1)
+    node_count = stream[start]
+    metadata_count = stream[start+1]
+    metadata_sum = 0
+    next_node_start = start+2
+
+    for node in 1:node_count
+        (node_metadata_sum, next_node_start) = sum_node_metadata(stream, next_node_start)
+        metadata_sum += node_metadata_sum
+    end
+
+    metadata_sum += sum(stream[next_node_start:(next_node_start+metadata_count-1)])
+
+    next_node_start += metadata_count
+
+    (metadata_sum, next_node_start)
+end
+
+function run_a()
+    stream = parse_input(load_input("8a"))
+    sum_node_metadata(stream)[1]
 end
 
 function sum_node(stream, start=1)
@@ -35,8 +56,9 @@ function sum_node(stream, start=1)
     (node_sum, next_node_start)
 end
 
-stream = parse_input(load("input_a.txt"))
+function run_b()
+    stream = parse_input(load_input("8a"))
+    sum_node(stream)[1]
+end
 
-result = sum_node(stream)
-
-println("$(result[1])")
+end # module
