@@ -7,4 +7,6 @@ days_finished = 9
         fp = joinpath(dirname(@__FILE__), "test_day$day.jl")
         include(fp)
     end
+
+    include("test_base.jl")
 end
