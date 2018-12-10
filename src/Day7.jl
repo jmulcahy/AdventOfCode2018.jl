@@ -1,10 +1,7 @@
-import DataStructures
+module Day7
 
-function load(filename)
-    open(filename) do file
-        read(file, String)
-    end
-end
+import ..load_input
+import DataStructures
 
 function parse_input(input)
     raw_instructions = eachmatch(r"Step (.) must be finished before step (.) can begin.", input)
@@ -28,8 +25,39 @@ function parse_input(input)
     (instructions, num_parents)
 end
 
-function instruction_time(instructions, remaining_parents, num_workers, base_time, start_instruction='^')
-    rp_copy = deepcopy(remaining_parents)
+function instruction_order(instructions, num_parents, start_instruction='^')
+    order = ""
+    remaining_parents = deepcopy(num_parents)
+
+    sorted_available = DataStructures.mutable_binary_minheap([start_instruction])
+
+    while !isempty(sorted_available)
+        next_instruction = pop!(sorted_available)
+        if haskey(instructions, next_instruction)
+            for child in instructions[next_instruction]
+                remaining_parents[child] -= 1
+                if remaining_parents[child] == 0
+                    push!(sorted_available, child)
+                end
+            end
+        end
+
+        if next_instruction != '^'
+            order *= next_instruction
+        end
+    end
+
+    order
+end
+
+function run_a()
+    input = load_input("7a")
+    (instructions, num_parents) = parse_input(input)
+    instruction_order(instructions, num_parents)
+end
+
+function instruction_time(instructions, num_parents, num_workers, base_time, start_instruction='^')
+    remaining_parents = deepcopy(num_parents)
 
     sorted_available = DataStructures.mutable_binary_minheap(Char)
     workers = DataStructures.PriorityQueue()
@@ -40,8 +68,8 @@ function instruction_time(instructions, remaining_parents, num_workers, base_tim
         (next_instruction, current_time) = DataStructures.dequeue_pair!(workers)
         if haskey(instructions, next_instruction)
             for child in instructions[next_instruction]
-                rp_copy[child] -= 1
-                if rp_copy[child] == 0
+                remaining_parents[child] -= 1
+                if remaining_parents[child] == 0
                     push!(sorted_available, child)
                 end
             end
@@ -56,9 +84,10 @@ function instruction_time(instructions, remaining_parents, num_workers, base_tim
     current_time
 end
 
+function run_b()
+    input = load_input("7a")
+    (instructions, num_parents) = parse_input(input)
+    instruction_time(instructions, num_parents, 5, 60)
+end
 
-(instructions, num_parents) = parse_input(load("input_a.txt"))
-
-total_time = instruction_time(instructions, num_parents, 5, 60)
-
-println(total_time)
+end # module
