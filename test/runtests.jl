@@ -1,9 +1,9 @@
 using Test
+import AdventOfCode2018: number_of_days
 
-days_finished = 9
 
 @testset "AdventOfCode2018" begin
-    for day in 1:days_finished
+    for day in 1:number_of_days
         fp = joinpath(dirname(@__FILE__), "test_day$day.jl")
         include(fp)
     end
