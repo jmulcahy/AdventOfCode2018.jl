@@ -8,7 +8,7 @@ function load_input(problem)
     end
 end
 
-const number_of_days = 16
+const number_of_days = 17
 
 for day in 1:number_of_days
     fp = joinpath(dirname(@__FILE__), "Day$day.jl")
