@@ -39,9 +39,9 @@ version = "0.4.1"
 
 [[Cbc]]
 deps = ["BinDeps", "Compat", "Homebrew", "Libdl", "MathOptInterface", "MathProgBase", "WinRPM"]
-git-tree-sha1 = "9da286a3b92cfda3e2bf36ee3516a34ec1abde41"
+git-tree-sha1 = "2fbee73403cbd17a45e421f77de06979b3d272fa"
 uuid = "9961bab8-2fa3-5c5a-9d89-47fab24efd76"
-version = "0.4.3"
+version = "0.4.4"
 
 [[CommonSubexpressions]]
 deps = ["Test"]
@@ -192,9 +192,9 @@ uuid = "d6f4376e-aef5-505a-96c1-9c027394607a"
 
 [[MathOptInterface]]
 deps = ["Compat", "Unicode"]
-git-tree-sha1 = "bc8dffc05c4697addeb3c536b303be3f8b16b1ed"
+git-tree-sha1 = "e88e00ffef6e4cdd515b1b3f4be84b55ff664379"
 uuid = "b8f27783-ece8-5eb3-8dc8-9495eed66fee"
-version = "0.6.4"
+version = "0.8.0"
 
 [[MathProgBase]]
 deps = ["Compat"]
@@ -282,9 +282,9 @@ version = "0.7.2"
 
 [[StaticArrays]]
 deps = ["InteractiveUtils", "LinearAlgebra", "Random", "Statistics", "Test"]
-git-tree-sha1 = "97c4bf0f647488dd7ac01ea12be5885f88762938"
+git-tree-sha1 = "1eb114d6e23a817cd3e99abc3226190876d7c898"
 uuid = "90137ffa-7385-5640-81b9-e52037218182"
-version = "0.10.0"
+version = "0.10.2"
 
 [[Statistics]]
 deps = ["LinearAlgebra", "SparseArrays"]
